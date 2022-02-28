@@ -9,6 +9,9 @@ title = "antoniomasia.com"
 theme = "loveit"
 staticDir = ['static']
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [params]
   # LoveIt theme version
   version = "0.2.X"
@@ -44,70 +47,54 @@ staticDir = ['static']
       defaultHiddenFromHomePage = false
 
   [params.social]
+  Linkedin = "ajmasia"
   GitHub = "ajmasia"
-  Linkedin = ""
   Twitter = "ajmasia"
   Instagram = "ajmasia"
-  Facebook = ""
   Telegram = "ajmasia"
-  Medium = ""
-  Gitlab = ""
-  Youtubelegacy = ""
-  Youtubecustom = ""
-  Youtubechannel = ""
-  Tumblr = ""
-  Quora = ""
-  Keybase = ""
-  Pinterest = ""
-  Reddit = ""
-  Codepen = ""
-  FreeCodeCamp = ""
-  Bitbucket = ""
-  Stackoverflow = ""
-  Weibo = ""
-  Odnoklassniki = ""
-  VK = ""
-  Flickr = ""
-  Xing = ""
-  Snapchat = ""
-  Soundcloud = ""
-  Spotify = ""
-  Bandcamp = ""
-  Paypal = ""
-  Fivehundredpx = ""
-  Mix = ""
-  Goodreads = ""
-  Lastfm = ""
-  Foursquare = ""
-  Hackernews = ""
-  Kickstarter = ""
-  Patreon = ""
-  Steam = ""
-  Twitch = ""
-  Strava = ""
-  Skype = ""
-  Whatsapp = ""
-  Zhihu = ""
-  Douban = ""
-  Angellist = ""
-  Slidershare = ""
-  Jsfiddle = ""
-  Deviantart = ""
-  Behance = ""
-  Dribbble = ""
-  Wordpress = ""
-  Vine = ""
-  Googlescholar = ""
-  Researchgate = ""
-  Mastodon = ""
-  Thingiverse = ""
-  Devto = ""
-  Gitea = ""
-  XMPP = ""
-  Matrix = ""
-  Bilibili = ""
   Email = "email@antoniomasia.com"
   RSS = true # LoveIt NEW | 0.2.0
+
+  [params.typeit]
+    # typing speed between each step (measured in milliseconds)
+    speed = 100
+    # blinking speed of the cursor (measured in milliseconds)
+    cursorSpeed = 1000
+    # character used for the cursor (HTML format is supported)
+    cursorChar = "|"
+    # cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+    duration = -1
+  [params.search]
+    enable = true
+    # type of search engine ("lunr", "algolia")
+    type = "lunr"
+    # max index length of the chunked content
+    contentLength = 4000
+    # placeholder of the search bar
+    placeholder = ""
+    # LoveIt NEW | 0.2.1 max number of results length
+    maxResultLength = 10
+    # LoveIt NEW | 0.2.3 snippet length of the result
+    snippetLength = 30
+    # LoveIt NEW | 0.2.1 HTML tag name of the highlight part in results
+    highlightTag = "em"
+    # LoveIt NEW | 0.2.4 whether to use the absolute URL based on the baseURL in search index
+    absoluteURL = false
+
+  [params.footer]
+    enable = true
+    # LoveIt NEW | 0.2.0 Custom content (HTML format is supported)
+    custom = '<a href="/legal">Aviso legal y privacidad</a>'
+    # LoveIt NEW | 0.2.0 whether to show Hugo and theme info
+    hugo = false
+    # LoveIt NEW | 0.2.0 whether to show copyright info
+    copyright = true
+    # LoveIt NEW | 0.2.0 whether to show the author
+    author = false
+    # Site creation time
+    since = 2014
+    # license info (HTML format is supported)
+    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>'
 
 [menu]
   [[menu.main]]

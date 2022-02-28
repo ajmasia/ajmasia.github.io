@@ -1,12 +1,31 @@
 #header-desktop .header-wrapper {
-    padding: 0 1rem 0 1.6rem;
+  padding: 0 1rem 0 1.6rem;
+}
+
+#header-desktop .header-wrapper .header-title {
+  font-size: 1.25rem;
+}
+
+.home[posts] .home-profile {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .page {
-    max-width: 1000px;
-    width: 100%;
+  max-width: 1000px;
+  width: 100%;
+}
+
+[header-desktop] .page {
+  padding-top: 4.5rem;
 }
 
 .single .content p {
-    margin: 1.5rem 0;
+  margin: 1.5rem 0;
+}
+
+.home[posts] .summary .single-title {
+  font-size: 1.60rem;
+  line-height: 140%;
+  margin: 0.4rem 0;
 }
