@@ -46,6 +46,16 @@ staticDir = ['static']
       # default behavior when you don't set "hiddenFromHomePage" in front matter
       defaultHiddenFromHomePage = false
 
+  [params.page]
+    [params.page.comment]
+      enable = true
+      # Disqus comment config
+      [params.page.comment.disqus]
+        # LoveIt NEW | 0.1.1
+        enable = true
+        # Disqus shortname to use Disqus in posts
+        shortname = "antoniomasia"
+
   [params.social]
   Linkedin = "ajmasia"
   GitHub = "ajmasia"
