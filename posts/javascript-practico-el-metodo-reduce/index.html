@@ -1,0 +1,183 @@
+<!doctype html><html lang=es>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Javascript práctico: el método reduce - antoniomasia.com</title><meta name=Description content><meta property="og:title" content="Javascript práctico: el método reduce">
+<meta property="og:description" content="Según la documentación oficial de Mozilla, el método reduce(), ejecuta una función reductora sobre cada uno de los elementos de una array, devolviendo como resultado un único valor.
+array.reduce(callback(accumulator, currentValue, [index], [array]), [initValue]) Este método ha de recibir como parámetro obligatorio la función reductora callback y como opcional puede recibir un valor inicial.
+A su vez, la función reductora ha de recibir de forma obligatoria un acumulador y el valor actual de la iteración, y como valores opcionales, el índice de la iteración y el array sobre el que se llamo el método reduce().">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://antoniomasia.com/posts/javascript-practico-el-metodo-reduce/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-11-19T00:00:00+00:00">
+<meta property="article:modified_time" content="2019-11-19T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Javascript práctico: el método reduce">
+<meta name=twitter:description content="Según la documentación oficial de Mozilla, el método reduce(), ejecuta una función reductora sobre cada uno de los elementos de una array, devolviendo como resultado un único valor.
+array.reduce(callback(accumulator, currentValue, [index], [array]), [initValue]) Este método ha de recibir como parámetro obligatorio la función reductora callback y como opcional puede recibir un valor inicial.
+A su vez, la función reductora ha de recibir de forma obligatoria un acumulador y el valor actual de la iteración, y como valores opcionales, el índice de la iteración y el array sobre el que se llamo el método reduce().">
+<meta name=application-name content="antoniomasia.com">
+<meta name=apple-mobile-web-app-title content="antoniomasia.com"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://antoniomasia.com/posts/javascript-practico-el-metodo-reduce/><link rel=prev href=https://antoniomasia.com/posts/la-lentitud-te-da-precision-la-precision-te-da-rapidez/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Javascript práctico: el método reduce","inLanguage":"es","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/antoniomasia.com\/posts\/javascript-practico-el-metodo-reduce\/"},"genre":"posts","keywords":"Javascript","wordcount":778,"url":"https:\/\/antoniomasia.com\/posts\/javascript-practico-el-metodo-reduce\/","datePublished":"2019-11-19T00:00:00+00:00","dateModified":"2019-11-19T00:00:00+00:00","publisher":{"@type":"Organization","name":"Antonio José Masiá"},"author":{"@type":"Person","name":"Antonio José Masiá"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":''==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:''==="dark")&&document.body.setAttribute("theme","dark")</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=antoniomasia.com>antoniomasia.com</a>
+</div><div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div></div></div></header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=antoniomasia.com>antoniomasia.com</a>
+</div><div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div></div><div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancelar
+</a>
+</div><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div></div></header><div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div></div><main class=main>
+<div class=container><article class="page single"><h1 class="single-title animated flipInX">Javascript práctico: el método reduce</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Antonio José Masiá</a></span>&nbsp;<span class=post-category>incluido en <a href=/categories/desarrollo/><i class="far fa-folder fa-fw"></i>Desarrollo</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-11-19>2019-11-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;778 palabras&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutos&nbsp;</div></div><div class=content id=content><p>Según la documentación oficial de <a href=https://developer.mozilla.org/en-US/ target=_blank rel="noopener noreffer">Mozilla</a>, el método <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce target=_blank rel="noopener noreffer">reduce()</a>, ejecuta una función reductora sobre cada uno de los elementos de una array, devolviendo como resultado un único valor.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>array</span><span class=p>.</span><span class=nx>reduce</span><span class=p>(</span><span class=nx>callback</span><span class=p>(</span><span class=nx>accumulator</span><span class=p>,</span> <span class=nx>currentValue</span><span class=p>,</span> <span class=p>[</span><span class=nx>index</span><span class=p>],</span> <span class=p>[</span><span class=nx>array</span><span class=p>]),</span> <span class=p>[</span><span class=nx>initValue</span><span class=p>])</span>
+</span></span></code></pre></div><p>Este método ha de recibir como parámetro obligatorio la <strong>función reductora</strong> callback y como opcional puede recibir un <strong>valor inicial</strong>.</p><p>A su vez, la función reductora ha de recibir de forma obligatoria un <strong>acumulador</strong> y el <strong>valor actual de la iteración</strong>, y como valores opcionales, el <strong>índice de la iteración</strong> y el <strong>array</strong> sobre el que se llamo el método reduce().</p><p>Veamos un ejemplo sencillo. Imaginemos que estamos desarrollando una aplicación de facturación y como es lógico necesitamos generar facturas a partir bien desde un carrito de la compra o bien unos servicios que hemos de facturar.</p><p>Todos los items de la factura los tenemos en un array:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceItems</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span> <span class=nx>service</span><span class=o>:</span> <span class=s1>&#39;consultoría&#39;</span><span class=p>,</span> <span class=nx>price</span><span class=o>:</span> <span class=mi>3000</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span> <span class=nx>service</span><span class=o>:</span> <span class=s1>&#39;desarrollo&#39;</span><span class=p>,</span> <span class=nx>price</span><span class=o>:</span> <span class=mi>18000</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span> <span class=nx>service</span><span class=o>:</span> <span class=s1>&#39;soporte&#39;</span><span class=p>,</span> <span class=nx>price</span><span class=o>:</span> <span class=mi>1000</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span></code></pre></div><p>Definiremos una función reductora que nos servirá para calcular el total de la factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>sumItems</span> <span class=o>=</span> <span class=p>(</span><span class=nx>invoiceAmount</span><span class=p>,</span> <span class=nx>nextItem</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>invoiceAmount</span> <span class=o>+</span> <span class=nx>nextItem</span><span class=p>.</span><span class=nx>price</span><span class=p>;</span> 
+</span></span></code></pre></div><p>Para obtener el total de la factura, aplicamos el método reduce() sobre nuestro array de items de la factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceAmount</span> <span class=o>=</span> <span class=nx>invoiceItems</span><span class=p>.</span><span class=nx>reduce</span><span class=p>(</span><span class=nx>sumItems</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span></code></pre></div><p>Obteniendo un valor total de 3000 + 18000 + 1000 igual a 22000.</p><p>Imaginemos ahora por ejemplo que podemos aplicar distintos tipos de descuento e impuestos de forma independiente a cada item de nuestra factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceItems</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>service</span><span class=o>:</span> <span class=s2>&#34;consultoría&#34;</span><span class=p>,</span> <span class=nx>price</span><span class=o>:</span> <span class=mi>3000</span><span class=p>,</span> <span class=nx>discount</span><span class=o>:</span> <span class=mf>0.1</span><span class=p>,</span> <span class=nx>tax</span><span class=o>:</span> <span class=mf>0.18</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>service</span><span class=o>:</span> <span class=s2>&#34;desarrollo&#34;</span><span class=p>,</span> <span class=nx>price</span><span class=o>:</span> <span class=mi>18000</span><span class=p>,</span> <span class=nx>discount</span><span class=o>:</span> <span class=mf>0.18</span><span class=p>,</span> <span class=nx>tax</span><span class=o>:</span> <span class=mf>0.18</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>service</span><span class=o>:</span> <span class=s2>&#34;soporte&#34;</span><span class=p>,</span> <span class=nx>price</span><span class=o>:</span> <span class=mi>1000</span><span class=p>,</span> <span class=nx>discount</span><span class=o>:</span> <span class=mf>0.08</span><span class=p>,</span> <span class=nx>tax</span><span class=o>:</span> <span class=mf>0.18</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>];</span>
+</span></span></code></pre></div><p>Definimos una nueva función reductora que nos permita obtener el descuento total que tendrá la factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>sumDiscount</span> <span class=o>=</span> <span class=p>(</span><span class=nx>invoiceDiscountAmount</span><span class=p>,</span> <span class=nx>nextItem</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>invoiceDiscountAmount</span> <span class=o>+</span> <span class=p>(</span><span class=nx>nextItem</span><span class=p>.</span><span class=nx>price</span> <span class=o>*</span> <span class=nx>nextItem</span><span class=p>.</span><span class=nx>discount</span><span class=p>);</span>  
+</span></span></code></pre></div><p>Una vez definida la función, para calcular el descuento de la factura aplicaremos de nuevo el método <code>reduce</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceDiscount</span> <span class=o>=</span> <span class=nx>invoiceItems</span><span class=p>.</span><span class=nx>reduce</span><span class=p>(</span><span class=nx>sumDiscount</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span></code></pre></div><p>Obteniendo un valor de descuento según lo definición de nuestros items de <code>3620</code>.</p><p>Podríamos seguir creando reducers para calcular todo aquello relacionado con la obtención de los datos totales de nuestra factura, pero la verdad es que resultaría un poco engorroso e ineficiente. Lo ideal sería tener un método que pasándole un array de items nos devolviera un objeto con todos los datos que totales de la factura, como por ejemplo este:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceResult</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>amount</span><span class=o>:</span> <span class=mi>22000</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>discount</span><span class=o>:</span> <span class=mi>3620</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>base</span><span class=o>:</span> <span class=mi>18380</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tax</span><span class=o>:</span> <span class=mf>3859.9</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>total</span><span class=o>:</span> <span class=mf>22239.8</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Y es aquí donde entra en juego la potencia del concepto de reducer que se usa por ejemplo en <a href=https://redux.js.org/ target=_blank rel="noopener noreffer">redux</a> y que también se ha implementado en los <a href=https://reactjs.org/docs/hooks-reference.html#usereducer target=_blank rel="noopener noreffer">hooks de react</a>.</p><p>En primer lugar crearemos una serie de métodos auxiliares de ayuda:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>round</span> <span class=o>=</span> <span class=p>(</span><span class=nx>value</span><span class=p>,</span> <span class=nx>decimals</span> <span class=o>=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>=&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>value</span> <span class=o>?</span> <span class=nb>Number</span><span class=p>(</span><span class=nb>Math</span><span class=p>.</span><span class=nx>round</span><span class=p>(</span><span class=nx>value</span> <span class=o>+</span> <span class=s2>&#34;e&#34;</span> <span class=o>+</span> <span class=nx>decimals</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;e-&#34;</span> <span class=o>+</span> <span class=nx>decimals</span><span class=p>)</span> <span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>iOperators</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>getDiscount</span><span class=o>:</span> <span class=p>(</span><span class=nx>price</span><span class=p>,</span> <span class=nx>discount</span> <span class=o>=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>(</span><span class=nx>price</span> <span class=o>?</span> <span class=nx>price</span> <span class=o>*</span> <span class=nx>discount</span> <span class=o>:</span> <span class=mi>0</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=nx>getBase</span><span class=o>:</span> <span class=p>(</span><span class=nx>price</span><span class=p>,</span> <span class=nx>discount</span> <span class=o>=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>(</span><span class=nx>price</span> <span class=o>?</span> <span class=nx>price</span> <span class=o>-</span> <span class=nx>price</span> <span class=o>*</span> <span class=nx>discount</span> <span class=o>:</span> <span class=mi>0</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=nx>getTax</span><span class=o>:</span> <span class=p>(</span><span class=nx>price</span><span class=p>,</span> <span class=nx>discount</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>tax</span> <span class=o>=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>=&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>price</span> <span class=o>?</span> <span class=p>(</span><span class=nx>price</span> <span class=o>-</span> <span class=nx>price</span> <span class=o>*</span> <span class=nx>discount</span><span class=p>)</span> <span class=o>*</span> <span class=nx>tax</span> <span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>getTotal</span><span class=o>:</span> <span class=p>(</span><span class=nx>price</span><span class=p>,</span> <span class=nx>discount</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>tax</span> <span class=o>=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>itemBase</span> <span class=o>=</span> <span class=nx>price</span> <span class=o>?</span> <span class=nx>price</span> <span class=o>-</span> <span class=nx>price</span> <span class=o>*</span> <span class=nx>discount</span> <span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>itemBase</span> <span class=o>+</span> <span class=nx>itemBase</span> <span class=o>*</span> <span class=nx>tax</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></div><p>Ahora definimos los reducers necesarios para obtener los valores de nuestra factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceReducers</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sumItems</span><span class=o>:</span> <span class=p>(</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>state</span><span class=p>.</span><span class=nx>amount</span> <span class=o>=</span> <span class=nx>round</span><span class=p>(</span><span class=nx>state</span><span class=p>.</span><span class=nx>amount</span> <span class=o>+</span> <span class=nx>item</span><span class=p>.</span><span class=nx>price</span><span class=p>,</span> <span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>state</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sumDiscount</span><span class=o>:</span> <span class=p>(</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>state</span><span class=p>.</span><span class=nx>discount</span> <span class=o>=</span> <span class=nx>round</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=nx>state</span><span class=p>.</span><span class=nx>discount</span> <span class=o>+</span> <span class=nx>iOperators</span><span class=p>.</span><span class=nx>getDiscount</span><span class=p>(</span><span class=nx>item</span><span class=p>.</span><span class=nx>price</span><span class=p>,</span> <span class=nx>item</span><span class=p>.</span><span class=nx>discount</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>      <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>state</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sumBase</span><span class=o>:</span> <span class=p>(</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>round</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=p>(</span><span class=nx>state</span><span class=p>.</span><span class=nx>base</span> <span class=o>=</span> <span class=nx>state</span><span class=p>.</span><span class=nx>base</span> <span class=o>+</span> <span class=nx>iOperators</span><span class=p>.</span><span class=nx>getBase</span><span class=p>(</span><span class=nx>item</span><span class=p>.</span><span class=nx>price</span><span class=p>,</span> <span class=nx>item</span><span class=p>.</span><span class=nx>discount</span><span class=p>)),</span>
+</span></span><span class=line><span class=cl>      <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>state</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sumTax</span><span class=o>:</span> <span class=p>(</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>state</span><span class=p>.</span><span class=nx>tax</span> <span class=o>=</span> <span class=nx>round</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=nx>state</span><span class=p>.</span><span class=nx>tax</span> <span class=o>+</span> <span class=nx>iOperators</span><span class=p>.</span><span class=nx>getTax</span><span class=p>(</span><span class=nx>item</span><span class=p>.</span><span class=nx>price</span><span class=p>,</span> <span class=nx>item</span><span class=p>.</span><span class=nx>discount</span><span class=p>,</span> <span class=nx>item</span><span class=p>.</span><span class=nx>tax</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>      <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>state</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sumInvoice</span><span class=o>:</span> <span class=p>(</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>state</span><span class=p>.</span><span class=nx>total</span> <span class=o>=</span> <span class=nx>round</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>      <span class=nx>state</span><span class=p>.</span><span class=nx>total</span> <span class=o>+</span> <span class=nx>iOperators</span><span class=p>.</span><span class=nx>getTotal</span><span class=p>(</span><span class=nx>item</span><span class=p>.</span><span class=nx>price</span><span class=p>,</span> <span class=nx>item</span><span class=p>.</span><span class=nx>discount</span><span class=p>,</span> <span class=nx>item</span><span class=p>.</span><span class=nx>tax</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>      <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></div><p>Necesitamos un método que nos combine todos los reducers a la vez:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceReducer</span> <span class=o>=</span> <span class=nx>reducers</span> <span class=p>=&gt;</span> <span class=p>(</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>Object</span><span class=p>.</span><span class=nx>keys</span><span class=p>(</span><span class=nx>reducers</span><span class=p>).</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>nextState</span><span class=p>,</span> <span class=nx>key</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>reducers</span><span class=p>[</span><span class=nx>key</span><span class=p>](</span><span class=nx>state</span><span class=p>,</span> <span class=nx>item</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>state</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span> <span class=p>{});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Combine reducers
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>invoiceValuesReducer</span> <span class=o>=</span> <span class=nx>invoiceReducer</span><span class=p>(</span><span class=nx>invoiceReducers</span><span class=p>);</span>
+</span></span></code></pre></div><p>Para obtener el valor de la factura, definiremos un estado inicial de la misma y posteriormente aplicaremos los reducers para obtener los valores de la factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kd>var</span> <span class=nx>initialState</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>amount</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>discount</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>base</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tax</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>total</span><span class=o>:</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>invoiceResult</span> <span class=o>=</span> <span class=nx>invoiceItems</span><span class=p>.</span><span class=nx>reduce</span><span class=p>(</span><span class=nx>invoiceValuesReducer</span><span class=p>,</span> <span class=nx>initialState</span><span class=p>);</span>
+</span></span></code></pre></div><p>Obteniendo el siguiente objeto con los valores de nuestra factura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>amount</span><span class=o>:</span> <span class=mi>22000</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>discount</span><span class=o>:</span> <span class=mi>3620</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>base</span><span class=o>:</span> <span class=mi>18380</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tax</span><span class=o>:</span> <span class=mf>21348.4</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>total</span><span class=o>:</span> <span class=mf>21688.4</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>Puedes ver el código de este ejemplo en <a href="https://codesandbox.io/embed/javascript-reducers-socdw?expanddevtools=1&fontsize=14&hidenavigation=1&theme=dark&view=editor" target=_blank rel="noopener noreffer">CodeSandbox</a></p></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Actualizado el 2019-11-19</span>
+</div><div class=post-info-license></div></div><div class=post-info-line>
+<div class=post-info-md></div><div class=post-info-share>
+<span></span>
+</div></div></div><div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/javascript/>Javascript</a></section><section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Regresar</a></span>&nbsp;|&nbsp;<span><a href=/>Inicio</a></span>
+</section></div><div class=post-nav><a href=/posts/la-lentitud-te-da-precision-la-precision-te-da-rapidez/ class=prev rel=prev title="La lentitud te da precision y la precisión te da rapidez"><i class="fas fa-angle-left fa-fw"></i>La lentitud te da precision y la precisión te da rapidez</a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.
+</noscript></div></article></div></main><footer class=footer>
+<div class=footer-container><div class=footer-line><a href=/legal>Aviso legal y privacidad</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC BY-SA 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Volver arriba">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="Ver comentarios">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=https://antoniomasia.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.es.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copiar al portapapeles",maxShownLines:10},comment:{},search:{highlightTag:"em",lunrIndexURL:"/index.json",lunrLanguageCode:"es",maxResultLength:10,noResultsFound:"No se encontraron resultados",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
