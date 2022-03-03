@@ -1,5 +1,5 @@
 ---
-title: "10 Mejores Canales Sobre Desarrollo Web"
+title: "Los 10 Mejores Canales Sobre Desarrollo Web de 2021"
 date: 2021-07-13
 draft: false
 author: "Antonio José Masiá"

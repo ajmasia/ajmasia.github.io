@@ -304,7 +304,7 @@ Con [Vuelidate](https://vuelidate.js.org/) podemos hacer un montón de cosas má
 
 Espero que te haya resultado útil y recuerda:
 
-> trata de escribir código limpio, te ayudará a que sea comprensible tanto para tí como para cualquiera que lo lea. **Escribir buen código también es un noble arte**.
+> Trata de escribir código limpio, te ayudará a que sea comprensible tanto para tí como para cualquiera que lo lea. **Escribir buen código también es un noble arte**.
 
 Nos vemos en el siguiente post.
 
