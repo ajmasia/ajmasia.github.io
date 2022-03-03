@@ -1,7 +1,7 @@
 ---
 title: "Proyectos: Planificacion adaptativa"
 date: 2015-04-20
-draft: true
+draft: false
 author: "Antonio José Masiá"
 toc: false
 categories:

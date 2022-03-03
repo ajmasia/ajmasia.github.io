@@ -1,7 +1,7 @@
 ---
 title: "Enfria tus pensamientos y aumenta tu efectividad"
 date: 2015-09-14
-draft: true
+draft: false
 author: "Antonio José Masiá"
 toc: false
 categories:
