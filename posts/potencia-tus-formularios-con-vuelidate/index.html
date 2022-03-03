@@ -1,0 +1,252 @@
+<!doctype html><html lang=es>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Potencia tus formularios con Vuelidate - antoniomasia.com</title><meta name=Description content><meta property="og:title" content="Potencia tus formularios con Vuelidate">
+<meta property="og:description" content="Los formularios son uno de los principales medios de entrada de información hacia nuestras aplicaciones web desde el lado del usuario, por lo que deberemos cuidar con mucho detalle cómo funcionan, tanto por usabilidad como por evitar errores que puedan acabar provocando agujeros de seguridad.
+Vuelidate es una biblioteca para poder hacer validaciones en Vue.js, y hoy voy a compartir contigo cómo usarla en tus proyectos.
+Tal y como se describe en la documentación oficial, se trata de una biblioteca ligera basada en modelos y totalmente desacoplada de la vista.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://antoniomasia.com/posts/potencia-tus-formularios-con-vuelidate/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-03-21T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-03-21T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Potencia tus formularios con Vuelidate">
+<meta name=twitter:description content="Los formularios son uno de los principales medios de entrada de información hacia nuestras aplicaciones web desde el lado del usuario, por lo que deberemos cuidar con mucho detalle cómo funcionan, tanto por usabilidad como por evitar errores que puedan acabar provocando agujeros de seguridad.
+Vuelidate es una biblioteca para poder hacer validaciones en Vue.js, y hoy voy a compartir contigo cómo usarla en tus proyectos.
+Tal y como se describe en la documentación oficial, se trata de una biblioteca ligera basada en modelos y totalmente desacoplada de la vista.">
+<meta name=application-name content="antoniomasia.com">
+<meta name=apple-mobile-web-app-title content="antoniomasia.com"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://antoniomasia.com/posts/potencia-tus-formularios-con-vuelidate/><link rel=prev href=https://antoniomasia.com/posts/javascript-practico-el-metodo-reduce/><link rel=next href=https://antoniomasia.com/posts/enviando-notificaciones-a-telegram-desde-tu-qnap/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Potencia tus formularios con Vuelidate","inLanguage":"es","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/antoniomasia.com\/posts\/potencia-tus-formularios-con-vuelidate\/"},"genre":"posts","keywords":"Vue, Formularios","wordcount":1467,"url":"https:\/\/antoniomasia.com\/posts\/potencia-tus-formularios-con-vuelidate\/","datePublished":"2020-03-21T00:00:00+00:00","dateModified":"2020-03-21T00:00:00+00:00","publisher":{"@type":"Organization","name":"Antonio José Masiá"},"author":{"@type":"Person","name":"Antonio José Masiá"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":''==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:''==="dark")&&document.body.setAttribute("theme","dark")</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=antoniomasia.com>antoniomasia.com</a>
+</div><div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div></div></div></header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=antoniomasia.com>antoniomasia.com</a>
+</div><div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div></div><div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Busca títulos o contenido..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Buscar>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Limpiar>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancelar
+</a>
+</div><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a href=javascript:void(0); class="menu-item theme-switch" title="Cambia el tema">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div></div></header><div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div></div><main class=main>
+<div class=container><article class="page single"><h1 class="single-title animated flipInX">Potencia tus formularios con Vuelidate</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Antonio José Masiá</a></span>&nbsp;<span class=post-category>incluido en <a href=/categories/desarrollo/><i class="far fa-folder fa-fw"></i>Desarrollo</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-03-21>2020-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1467 palabras&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;7 minutos&nbsp;</div></div><div class=content id=content><p>Los formularios son uno de los principales medios de entrada de información hacia nuestras aplicaciones web desde el lado del usuario, por lo que deberemos cuidar con mucho detalle cómo funcionan, <strong>tanto por usabilidad como por evitar errores que puedan acabar provocando agujeros de seguridad</strong>.</p><p><a href=https://vuelidate.js.org/ target=_blank rel="noopener noreffer">Vuelidate</a> es una biblioteca para poder hacer validaciones en <a href=https://vuejs.org/ target=_blank rel="noopener noreffer">Vue.js</a>, y hoy voy a compartir contigo cómo usarla en tus proyectos.</p><p>Tal y como se describe en la <a href=https://vuelidate.js.org/#getting-started target=_blank rel="noopener noreffer">documentación oficial</a>, se trata de una biblioteca ligera <strong>basada en modelos y totalmente desacoplada de la vista</strong>. Soporta el uso tanto de <strong>validadores predefinidos como personalizados</strong>, pudiendo validar información desde distintas fuentes como por ejemplo <code>getters</code> de <a href=https://vuex.vuejs.org/ target=_blank rel="noopener noreffer">Vuex</a> o propiedades computadas. Realmente una gran herramienta.</p><p>Veamos cómo podemos usarla y cómo funciona:</p><p>Si queremos usar <a href=https://vuelidate.js.org/ target=_blank rel="noopener noreffer">Vuelidate</a> de forma global, instalaremos la dependencia en nuestro proyecto y la usaremos a modo de plugin de <a href=https://vuejs.org/ target=_blank rel="noopener noreffer">Vue.js</a>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># using yarn</span>
+</span></span><span class=line><span class=cl>yarn add vuelidate
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># using npm</span>
+</span></span><span class=line><span class=cl>npm i vuelidate
+</span></span></code></pre></div><p>Inyectaremos la dependencia en la instancia de <a href=https://vuejs.org/ target=_blank rel="noopener noreffer">Vue.js</a></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>import</span> <span class=nx>Vue</span> <span class=nx>from</span> <span class=s1>&#39;vue&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=nx>Vuelidate</span> <span class=nx>from</span> <span class=s1>&#39;vuelidate&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>Vue</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>Vuelidate</span><span class=p>)</span>
+</span></span></code></pre></div><p>Si queremos usarla de forma puntual en uno de nuestros componentes, sin tener que inyectar la dependencia de forma global en nuestra instancia de <a href=https://vuejs.org/ target=_blank rel="noopener noreffer">Vue.js</a>, podemos hacer uso de los mixin de <a href=https://vuejs.org/ target=_blank rel="noopener noreffer">Vue.js</a>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>validationMixin</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;vuelidate&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>Component</span> <span class=o>=</span> <span class=nx>Vue</span><span class=p>.</span><span class=nx>extend</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>mixins</span><span class=o>:</span> <span class=p>[</span><span class=nx>validationMixin</span><span class=p>],</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></div><p>Una vez habilitado el plugin, bien de forma global o at través de su mixin, en la instancia de Vue tendremos acceso al modelo <code>$v</code> que representa el estado de la validación y mediante el cuál podremos acceder a una serie de valores y métodos para poder gestionar la validación de nuestro formulario.</p><p>En terminología técnica de <a href=https://vuejs.org/ target=_blank rel="noopener noreffer">Vue.js</a>, $v es una propiedad computada que monitorizar, tanto el estado del formulario como el del modelo.</p><p>Además tanto el modelo <code>data</code> con el modelo <code>validations</code>, quedarán sincronizados.</p><p>Las reglas de validación se definirán, previa importación desde <code>vuelidate/lib/validators</code>, como atributos dentro del objeto <code>validations</code> que definiremos dentro de nuestro componente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>validations</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=p>{</span> <span class=nx>required</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>age</span><span class=o>:</span> <span class=p>{</span> <span class=nx>required</span><span class=p>,</span> <span class=nx>numeric</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>},</span>
+</span></span></code></pre></div><p>Antes de ver con más detalle cómo funciona el proceso de validación, vamos a analizar el contenido de algunas de las propiedad computada <code>$v</code>:</p><ul>
+<li><code>$dirty</code> | Este valor nos indica si el usuario toco el campo o el formulario al menos una vez</li><li><code>$invalid</code> | Este valor muestra el estado de validación del modelo</li><li><code>$error</code> | Valor que nos permite decidir si se muestra o no un error en el formulario</li><li><code>$pending</code> | Indica si algún tipo de validación asíncrona está pendiente de resolverse. Por defecto es siempre <code>false</code> para validaciones síncronas</li><li><code>$model</code> | Referencia al valor del modelo validado. <code>$v.value.$model</code> es lo mismo que <code>this.value</code></li></ul><p>Veamos a hora los métodos:</p><ul>
+<li><code>$touch</code> | Setea de forma recursiva el valor de $dirty, tanto del modelo como de todos sus elementos secundarios a <code>true</code></li><li><code>$reset</code> | Hace los mismo que <code>$touch</code> pero seteando el valor a <code>false</code></li></ul><p>Jugando con estos parámetros seremos capaces de controlar nuestro formulario.</p><p>Antes de comenzar a implementar la validación de nuestro formulario, deberemos tener clara cuál es la estrategia de validación que usaremos. Por ejemplo <em>¿validaremos cada campo según el usuario va escribiendo escribe?</em> <em>¿Validaremos una vez se pierde el foco del campo?</em> <em>¿Validaremos sólo cuando el usuario pulse en botón de envío?</em> Todo dependerá del tipo de formulario, la cantidad de campos que tenga, etc.</p><p>Imaginemos un formulario sencillo como este:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://res.cloudinary.com/ajmasia/image/upload/v1604663974/blog/posts/008/sample_form.png data-srcset="https://res.cloudinary.com/ajmasia/image/upload/v1604663974/blog/posts/008/sample_form.png, https://res.cloudinary.com/ajmasia/image/upload/v1604663974/blog/posts/008/sample_form.png 1.5x, https://res.cloudinary.com/ajmasia/image/upload/v1604663974/blog/posts/008/sample_form.png 2x" data-sizes=auto alt=https://res.cloudinary.com/ajmasia/image/upload/v1604663974/blog/posts/008/sample_form.png title=https://res.cloudinary.com/ajmasia/image/upload/v1604663974/blog/posts/008/sample_form.png></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>script</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>validationMixin</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;vuelidate&#39;</span>
+</span></span><span class=line><span class=cl><span class=c1>// Import needed vuelidate validators
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>required</span><span class=p>,</span> <span class=nx>numeric</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;vuelidate/lib/validators&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=k>default</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;Form&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>data</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>age</span><span class=o>:</span>  <span class=s1>&#39;&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>mixins</span><span class=o>:</span> <span class=p>[</span><span class=nx>validationMixin</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nx>validations</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span><span class=o>:</span> <span class=p>{</span> <span class=nx>required</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>age</span><span class=o>:</span>  <span class=p>{</span> 
+</span></span><span class=line><span class=cl>        <span class=nx>required</span><span class=p>,</span> 
+</span></span><span class=line><span class=cl>        <span class=nx>numeric</span> 
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>methods</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>onSubmit</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>({</span> <span class=nx>name</span><span class=o>:</span> <span class=k>this</span><span class=p>.</span><span class=nx>name</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=k>this</span><span class=p>.</span><span class=nx>age</span> <span class=p>})</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=err>/script&gt;</span>
+</span></span></code></pre></div><p>Como podemos ver, hemos definido el objeto <code>validations</code> mapeando directamente el modelo del formulario e indicando los validadores predefinidos que usará cada entidad del modelo.</p><p>La vista estaría definida de la siguiente forma:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>template</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>b-container</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;</span>Vue Forms validation with Vuelidate<span class=p>&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>b-row</span> <span class=na>align-h</span><span class=o>=</span><span class=s>&#34;center&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>b-col</span> <span class=na>cols</span><span class=o>=</span><span class=s>&#34;6&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>b-form</span> <span class=err>@</span><span class=na>submit</span><span class=err>.</span><span class=na>stop</span><span class=err>.</span><span class=na>prevent</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;</span><span class=nt>b-form-group</span> 
+</span></span><span class=line><span class=cl>            <span class=na>id</span><span class=o>=</span><span class=s>&#34;name-group&#34;</span> 
+</span></span><span class=line><span class=cl>            <span class=na>label</span><span class=o>=</span><span class=s>&#34;Name&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=na>label-for</span><span class=o>=</span><span class=s>&#34;name&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&lt;</span><span class=nt>b-form-input</span>
+</span></span><span class=line><span class=cl>              <span class=na>id</span><span class=o>=</span><span class=s>&#34;name&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=na>type</span><span class=o>=</span><span class=s>&#34;text&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Please, enter your name&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=na>v-model</span><span class=o>=</span><span class=s>&#34;$v.name.$model&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&gt;&lt;/</span><span class=nt>b-form-input</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;/</span><span class=nt>b-form-group</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;</span><span class=nt>b-form-group</span> 
+</span></span><span class=line><span class=cl>            <span class=na>id</span><span class=o>=</span><span class=s>&#34;name-group&#34;</span> 
+</span></span><span class=line><span class=cl>            <span class=na>label</span><span class=o>=</span><span class=s>&#34;Age&#34;</span> 
+</span></span><span class=line><span class=cl>            <span class=na>label-for</span><span class=o>=</span><span class=s>&#34;age&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&lt;</span><span class=nt>b-form-input</span>
+</span></span><span class=line><span class=cl>              <span class=na>id</span><span class=o>=</span><span class=s>&#34;suagername&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=na>type</span><span class=o>=</span><span class=s>&#34;text&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Please, your surname&#34;</span>
+</span></span><span class=line><span class=cl>              <span class=na>v-model</span><span class=err>.</span><span class=na>number</span><span class=o>=</span><span class=s>&#34;$v.age.$model&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&gt;&lt;/</span><span class=nt>b-form-input</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;/</span><span class=nt>b-form-group</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;</span><span class=nt>b-button</span> 
+</span></span><span class=line><span class=cl>            <span class=na>class</span><span class=o>=</span><span class=s>&#34;mt-5&#34;</span> 
+</span></span><span class=line><span class=cl>            <span class=na>variant</span><span class=o>=</span><span class=s>&#34;primary&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=na>block</span> <span class=err>@</span><span class=na>click</span><span class=o>=</span><span class=s>&#34;onSubmit&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&gt;</span>Submit<span class=p>&lt;/</span><span class=nt>b-button</span>
+</span></span><span class=line><span class=cl>          <span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=p>&lt;/</span><span class=nt>b-form</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>b-col</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>b-row</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>b-container</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+</span></span></code></pre></div><p>Si inspeccionamos el componente <code>Form</code> a través de las <a href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en" target=_blank rel="noopener noreffer">Vue devTools</a>, podremos ver la siguiente estructura:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://res.cloudinary.com/ajmasia/image/upload/v1604663972/blog/posts/008/vue_status.png data-srcset="https://res.cloudinary.com/ajmasia/image/upload/v1604663972/blog/posts/008/vue_status.png, https://res.cloudinary.com/ajmasia/image/upload/v1604663972/blog/posts/008/vue_status.png 1.5x, https://res.cloudinary.com/ajmasia/image/upload/v1604663972/blog/posts/008/vue_status.png 2x" data-sizes=auto alt=https://res.cloudinary.com/ajmasia/image/upload/v1604663972/blog/posts/008/vue_status.png title=https://res.cloudinary.com/ajmasia/image/upload/v1604663972/blog/posts/008/vue_status.png></p><p>Si queremos deshabilitar el botón <code>submit</code> hasta que la validación sea correcta, podemos bindear el atributo <code>disable</code> del botón con el atributo de grupo (o global) <code>$invalid</code> de <code>$v</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>b-button</span>
+</span></span><span class=line><span class=cl>  <span class=na>class</span><span class=o>=</span><span class=s>&#34;mt-5&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=na>variant</span><span class=o>=</span><span class=s>&#34;primary&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=na>block</span>
+</span></span><span class=line><span class=cl>  <span class=err>@</span><span class=na>click</span><span class=o>=</span><span class=s>&#34;onSubmit&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=na>:disabled</span><span class=o>=</span><span class=s>&#34;$v.$invalid&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&gt;</span>Submit
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>b-button</span><span class=p>&gt;</span>
+</span></span></code></pre></div><p>De esta forma impedimos al usuario que envíe el formulario hasta que este sea válido.</p><p>Veamos ahora las validaciones individuales de cada campo:</p><p>Podemos hacer la validación de cada campo de dos formas. Bien a la vez que se va escribiendo sobre él o bien cuando se pierde el foco.</p><p>Vemos las dos soluciones:</p><p>Validación mientras el usuario escribe:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>b-form-group</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;name-group&#34;</span> <span class=na>label</span><span class=o>=</span><span class=s>&#34;Name&#34;</span> <span class=na>label-for</span><span class=o>=</span><span class=s>&#34;name&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>b-form-input</span>
+</span></span><span class=line><span class=cl>    <span class=na>id</span><span class=o>=</span><span class=s>&#34;name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>type</span><span class=o>=</span><span class=s>&#34;text&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Please, enter your name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>v-model</span><span class=err>.</span><span class=na>lazy</span><span class=o>=</span><span class=s>&#34;$v.name.$model&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&gt;&lt;/</span><span class=nt>b-form-input</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>b-form-invalid-feedback</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;input-2-live-feedback&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    Empty field
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>b-form-invalid-feedback</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>b-form-group</span><span class=p>&gt;</span>
+</span></span></code></pre></div><p>Como podemos observar, estamos usando <code>bootstrap-vue</code>. El componente <code>&lt;b-form-input></code> dispone de un atributo denominado <code>state</code> que nos permite controlar cuándo se mostrará el mensaje de error definido en el componente <code>&lt;b-form-invalid-feedback></code>. Para que se produzca la validación conforme el usuario va escribiendo en el campo, bindearemos <code>state</code> con el estado de validación del formulario:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>b-form-input</span>
+</span></span><span class=line><span class=cl>    <span class=na>id</span><span class=o>=</span><span class=s>&#34;name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>type</span><span class=o>=</span><span class=s>&#34;text&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Please, enter your name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>v-model</span><span class=err>.</span><span class=na>lazy</span><span class=o>=</span><span class=s>&#34;$v.name.$model&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>:state</span><span class=o>=</span><span class=s>&#34;$v.name.$dirty ? !$v.name.$error : null&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>&gt;&lt;/</span><span class=nt>b-form-input</span><span class=p>&gt;</span>
+</span></span></code></pre></div><p>Si observamos, lo que hacemos es verificar si ya el usuario ha usado el campo <code>$v.name.$dirty </code>, y en caso afirmativo, chequeamos si hay algún error. De lo contrario <code>state</code> será <code>null</code>.</p><p>Este tipo de validación puede resultar un poco incómoda en los casos en los que el valor válido se obtiene después de que el usuario haya introducido algunos datos, como por ejemplo un mínimo de caracteres o un valor comprendido entre dos números. En este caso lo ideal sería validar al perder el foco.</p><p>Validación al perder el foco:</p><p>Para ello deberemos hacer uso de los métodos <code>$reset</code> y <code>$touch</code> que nos ofrece vuelidate:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>b-form-input</span>
+</span></span><span class=line><span class=cl>    <span class=na>id</span><span class=o>=</span><span class=s>&#34;name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>type</span><span class=o>=</span><span class=s>&#34;text&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Please, enter your name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>v-model</span><span class=err>.</span><span class=na>lazy</span><span class=o>=</span><span class=s>&#34;$v.name.$model&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=na>:state</span><span class=o>=</span><span class=s>&#34;$v.name.$dirty ? !$v.name.$error : null&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=err>@</span><span class=na>input</span><span class=o>=</span><span class=s>&#34;$v.name.$reset()&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=err>@</span><span class=na>blur</span><span class=o>=</span><span class=s>&#34;$v.name.$touch()&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>&gt;&lt;/</span><span class=nt>b-form-input</span><span class=p>&gt;</span>
+</span></span></code></pre></div><p>Al detectar el evento <code>@input</code> lo que hacemos es resetear el valor <code>$dirty</code> del campo y cuando perdemos el foco, <code>@blur</code>, seteamos el valor de <code>$dirty</code> a true para que vuelidate desencadene la validación que si recuerdas se verificará en el atributo <code>state</code>.</p><p>Ahora bien, si observamos, el campo <code>age</code> es requerido y además debe de ser numérico, por lo que el mensaje de error debería de ser diferente en función de si ha introducido o no algún valor o si el valor introducido es o no numérico. Veamos como podemos resolver esto.</p><p>Una solución podría ser tener distintos <code>div</code> en las vista que se mostraran de forma condicional en función del tipo de error que se detecte, aunque esta solución parece poco elegante. Para hacerlo de forma dinámica usaremos una propiedad computada que muestre el mensaje correspondiente en función del tipo de error detectado:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>computed</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>getAgeErrorMessage</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>$v</span><span class=p>.</span><span class=nx>age</span><span class=p>.</span><span class=nx>$error</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>key</span> <span class=k>in</span> <span class=k>this</span><span class=p>.</span><span class=nx>$v</span><span class=p>.</span><span class=nx>age</span><span class=p>.</span><span class=nx>$params</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>$v</span><span class=p>.</span><span class=nx>age</span><span class=p>[</span><span class=nx>key</span><span class=p>]</span> <span class=o>===</span> <span class=kc>false</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>switch</span> <span class=p>(</span><span class=nx>key</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>              <span class=k>case</span> <span class=s1>&#39;required&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=s1>&#39;This filed is required&#39;</span>
+</span></span><span class=line><span class=cl>              <span class=k>case</span> <span class=s1>&#39;numeric&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=s1>&#39;The field must be numeric&#39;</span>
+</span></span><span class=line><span class=cl>              <span class=k>default</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=kc>null</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span></code></pre></div><p>Cada propiedad dentro del modelo contiene un atributo <code>$params</code> que contiene la configuración del validador. Lo que estamos haciendo es recorrer dicho atributo y comprobar que si existe algún error vinculado a cada <code>key</code>, mostrando el mensaje correspondiente usando un <code>switch</code>.</p><p>El lugar de usar un <code>switch</code>, podríamos usar un objeto de configuración de los mensajes y devolver aquél que corresponda según el caso. Para ello podemos hacer uso de las <code>custom properties</code> que nos aporta Vue.js.</p><p>Definimos dentro de nuestro componente un objeto que contenga todos los mensajes posibles:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>errorMessages</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>required</span><span class=o>:</span> <span class=s1>&#39;This filed is required&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>numeric</span><span class=o>:</span> <span class=s1>&#39;The field must be numeric&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>},</span>
+</span></span></code></pre></div><p>Y ahora, en lugar de usar el <code>switch</code> llamaremos al mensaje de error correspondiente usando el objeto <code>$options</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>computed</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>getAgeErrorMessage</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>$v</span><span class=p>.</span><span class=nx>age</span><span class=p>.</span><span class=nx>$error</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>key</span> <span class=k>in</span> <span class=k>this</span><span class=p>.</span><span class=nx>$v</span><span class=p>.</span><span class=nx>age</span><span class=p>.</span><span class=nx>$params</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>$v</span><span class=p>.</span><span class=nx>age</span><span class=p>[</span><span class=nx>key</span><span class=p>]</span> <span class=o>===</span> <span class=kc>false</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>$options</span><span class=p>.</span><span class=nx>errorMessages</span><span class=p>[</span><span class=nx>key</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=kc>null</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span></code></pre></div><p>Parece que está opción es más elegante ¿verdad?</p><p>Con <a href=https://vuelidate.js.org/ target=_blank rel="noopener noreffer">Vuelidate</a> podemos hacer un montón de cosas más como por ejemplo <a href=https://vuelidate.js.org/#sub-validation-groups target=_blank rel="noopener noreffer">agrupar validaciones</a>, a <a href=https://vuelidate.js.org/#sub-data-nesting target=_blank rel="noopener noreffer">anidarlas</a>, <a href=https://vuelidate.js.org/#sub-collections-validation target=_blank rel="noopener noreffer">agruparlas en colecciones</a>, definir <a href=https://vuelidate.js.org/#sub-dynamic-validation-schema target=_blank rel="noopener noreffer">esquemas dinámicos</a> y <a href=https://vuelidate.js.org/#sub-dynamic-parameters target=_blank rel="noopener noreffer">parámetros dinámicos</a>, hacer <a href=https://vuelidate.js.org/#sub-asynchronous-validation target=_blank rel="noopener noreffer">validación asíncrona</a> e incluso <a href=https://vuelidate.js.org/#sub-delayed-validation-errors target=_blank rel="noopener noreffer">validaciones retardadas</a>. Algunas de estas cosas las veremos en otros post más avanzados.</p><p>Espero que te haya resultado útil y recuerda:</p><blockquote>
+<p>trata de escribir código limpio, te ayudará a que sea comprensible tanto para tí como para cualquiera que lo lea. <strong>Escribir buen código también es un noble arte</strong>.</p></blockquote><p>Nos vemos en el siguiente post.</p></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Actualizado el 2020-03-21</span>
+</div><div class=post-info-license></div></div><div class=post-info-line>
+<div class=post-info-md></div><div class=post-info-share>
+<span></span>
+</div></div></div><div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/vue/>Vue</a>,&nbsp;<a href=/tags/formularios/>Formularios</a></section><section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Regresar</a></span>&nbsp;|&nbsp;<span><a href=/>Inicio</a></span>
+</section></div><div class=post-nav><a href=/posts/javascript-practico-el-metodo-reduce/ class=prev rel=prev title="Javascript práctico: el método reduce"><i class="fas fa-angle-left fa-fw"></i>Javascript práctico: el método reduce</a>
+<a href=/posts/enviando-notificaciones-a-telegram-desde-tu-qnap/ class=next rel=next title="Enviando notificaciones a Telegram desde tu Qnap">Enviando notificaciones a Telegram desde tu Qnap<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.
+</noscript></div></article></div></main><footer class=footer>
+<div class=footer-container><div class=footer-line><a href=/legal>Aviso legal y privacidad</a></div><div class=footer-line>Provisto por <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.93.1">Hugo</a> | Tema - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2022</span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC BY-SA 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Volver arriba">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="Ver comentarios">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=https://antoniomasia.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.es.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copiar al portapapeles",maxShownLines:10},comment:{},search:{highlightTag:"em",lunrIndexURL:"/index.json",lunrLanguageCode:"es",maxResultLength:10,noResultsFound:"No se encontraron resultados",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
