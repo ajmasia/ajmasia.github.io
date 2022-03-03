@@ -41,7 +41,7 @@ staticDir = ['static']
     [params.home.posts]
       enable = true
       # special amount of posts in each home posts page
-      paginate = 6
+      paginate = 10
       # LoveIt DELETED | 0.2.0 replaced with hiddenFromHomePage in params.page
       # default behavior when you don't set "hiddenFromHomePage" in front matter
       defaultHiddenFromHomePage = false
@@ -96,7 +96,7 @@ staticDir = ['static']
     # LoveIt NEW | 0.2.0 Custom content (HTML format is supported)
     custom = '<a href="/legal">Aviso legal y privacidad</a>'
     # LoveIt NEW | 0.2.0 whether to show Hugo and theme info
-    hugo = false
+    hugo = true
     # LoveIt NEW | 0.2.0 whether to show copyright info
     copyright = true
     # LoveIt NEW | 0.2.0 whether to show the author
@@ -105,6 +105,22 @@ staticDir = ['static']
     since = 2014
     # license info (HTML format is supported)
     license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>'
+  [params.section]
+    # special amount of posts in each section page
+    paginate = 10
+    # date format (month and day)
+    dateFormat = "01-02"
+    # amount of RSS pages
+    rss = 10
+
+  # LoveIt NEW | 0.2.0 List (category or tag) page config
+  [params.list]
+    # special amount of posts in each list page
+    paginate = 10
+    # date format (month and day)
+    dateFormat = "01-02"
+    # amount of RSS pages
+    rss = 10
 
 [menu]
   [[menu.main]]
