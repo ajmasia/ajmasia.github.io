@@ -1,7 +1,7 @@
 ---
 title: "La lentitud te da precision y la precisión te da rapidez"
 date: 2015-01-15
-draft: true
+draft: false
 author: "Antonio José Masiá"
 toc: false
 categories:

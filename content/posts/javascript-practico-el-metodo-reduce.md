@@ -1,7 +1,7 @@
 ---
 title: "Javascript práctico: el método reduce"
 date: 2019-11-19
-draft: true
+draft: false
 author: "Antonio José Masiá"
 toc: false
 categories:

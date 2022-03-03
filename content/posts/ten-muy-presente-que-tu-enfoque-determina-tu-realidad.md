@@ -1,7 +1,7 @@
 ---
 title: "Ten muy presente que tu enfoque determina tu realidad"
 date: 2014-12-07
-draft: true
+draft: false
 author: "Antonio José Masiá"
 toc: false
 categories:
