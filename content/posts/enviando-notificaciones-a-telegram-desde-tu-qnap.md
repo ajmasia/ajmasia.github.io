@@ -164,11 +164,11 @@ Estos valores los rellenará automáticamente el sistema, obteniendo la informac
 
 Nos dirigimos a la app [Notification Center](https://www.qnap.com/solution/notification-center/es-es/), concretamente a la pestaña `Cuenta de servicio y sincornización de dispositivos`, concretamente a la opción `SMS`.
 
-![Imagen](https://res.cloudinary.com/ajmasia/image/upload/q_auto:eco/v1611416742/blog/posts/010/010\_image\_01.png)
+{{< figure src="https://res.cloudinary.com/ajmasia/image/upload/q_auto:eco/v1611416742/blog/posts/010/010_image_01.png" >}}
 
 Una vez allí daremos de alta un nuevo servicio SMSC y añadimos un nuevo servicio.
 
-![Imagen](https://res.cloudinary.com/ajmasia/image/upload/q_auto:eco/v1611416742/blog/posts/010/010\_image\_02.png)
+{{< figure src="https://res.cloudinary.com/ajmasia/image/upload/q_auto:eco/v1611416742/blog/posts/010/010_image_02.png" >}}
 
 Seleccionamos la opción `Custom`, le damos el nombre identificativo al servicio y pegamos nuestra `URL` en el campo `Texto de la Plantilla URL`.
 
@@ -178,7 +178,7 @@ https://api.telegram.org/bot<token>/sendMessage?chat_id=<chat_id>&text=@@Text@@&
 
 Acuérdate de que el `chat_id` debe de ser el del grupo, y el `token` el obtenido cuando hemos creado el Bot. Pulsamos en el botón `crear` y ya lo tenemos listo:
 
-![Imagen](https://res.cloudinary.com/ajmasia/image/upload/q_auto:eco/v1611416742/blog/posts/010/010\_image\_03.png)
+{{< figure src="https://res.cloudinary.com/ajmasia/image/upload/q_auto:eco/v1611416742/blog/posts/010/010_image_03.png" >}}
 
 Para probar que el servicio funciona, tan sólo hemos de pulsar en el icono del avión, configurar nuestro país e indicar algún número de teléfono, de lo contrario la prueba fallará, **y et voilà** ! ya recibimos notificaciones. El número de teléfono es indiferente. Todos los mensajes llegarán a nuestro grupo.
 

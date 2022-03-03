@@ -16,6 +16,13 @@ staticDir = ['static']
   # LoveIt theme version
   version = "0.2.X"
 
+  [params.analytics]
+    enable = true
+    # Google Analytics
+    [params.analytics.google]
+      id = "UA-184847904-1"
+      # whether to anonymize IP
+      anonymizeIP = true
   # Home page config
   [params.home]
     # LoveIt NEW | 0.2.0 amount of RSS pages
