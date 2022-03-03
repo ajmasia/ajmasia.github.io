@@ -59,7 +59,8 @@ const invoiceItems = [
 Definimos una nueva función reductora que nos permita obtener el descuento total que tendrá la factura:
 
 ```jsx
-const sumDiscount = (invoiceDiscountAmount, nextItem) => invoiceDiscountAmount + (nextItem.price * nextItem.discount);  
+const sumDiscount = 
+  (invoiceDiscountAmount, nextItem) => invoiceDiscountAmount + (nextItem.price * nextItem.discount);  
 ```
 
 Una vez definida la función, para calcular el descuento de la factura aplicaremos de nuevo el método `reduce`:
