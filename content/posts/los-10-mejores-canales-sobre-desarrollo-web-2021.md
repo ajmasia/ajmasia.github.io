@@ -8,6 +8,7 @@ categories:
   - Desarrollo
 tags:
   - Opinión
+featuredImage: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_50,w_1080/v1626162881/blog/posts/hello-i-m-nik-pYoj2nyokOg-unsplash_g61cgb.jpg
 ---
 
 [Youtube](https://www.youtube.com/) es sin duda una de las mayores fuentes de conocimiento disponible para cualquier desarrollador. En esta ocasión quiero compartir contigo, cúales son los 10 mejores canales sobre desarrollo web en Español.
