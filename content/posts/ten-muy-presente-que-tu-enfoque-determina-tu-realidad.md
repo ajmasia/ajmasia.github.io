@@ -8,7 +8,6 @@ categories:
   - Efectividad
 tags:
   - PNL
-featuredImage: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611163383/blog/posts/ten-muy-presente-que-tu-enfoque-determina-tu-realidad.jpg
 hiddenFromHomePage: true
 ---
 

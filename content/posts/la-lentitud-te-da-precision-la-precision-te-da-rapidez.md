@@ -8,7 +8,6 @@ categories:
   - Efectividad
 tags:
   - Reflexiones
-featuredImage: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1614841568/blog/posts/la-lentitud-te-da-precision-y-la-precision-te-da-rapidez.jpg
 hiddenFromHomePage: true
 ---
 
