@@ -9,6 +9,7 @@ categories:
 tags:
   - PNL
 featuredImage: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611163383/blog/posts/ten-muy-presente-que-tu-enfoque-determina-tu-realidad.jpg
+hiddenFromHomePage: true
 ---
 
 Una de las principales suposiciones sobre la que se apoya la **[PNL](http://es.wikipedia.org/wiki/Programaci%C3%B3n_neuroling%C3%BC%C3%ADstica)** afirma lo siguiente: ***el mapa no es el territorio***. 

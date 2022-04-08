@@ -9,6 +9,7 @@ categories:
 tags:
   - Psicología
 featuredImagePreview: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611162919/blog/posts/enfria-tus-pensamientos-y-aumenta-tu-efectividad.jpg
+hiddenFromHomePage: true
 ---
 
 Entender **cómo funciona nuestra mente** es en parte entender cómo desarrollamos ciertas estrategias o comportamientos que nos llevan a los resultados que obtenemos obtenemos, y en este sentido comprender cómo funciona el **autocontrol** resulta crucial.

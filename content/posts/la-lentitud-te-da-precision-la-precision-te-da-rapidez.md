@@ -9,6 +9,7 @@ categories:
 tags:
   - Reflexiones
 featuredImagePreview: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1614841568/blog/posts/la-lentitud-te-da-precision-y-la-precision-te-da-rapidez.jpg
+hiddenFromHomePage: true
 ---
 
 Tal y como afirma [Peter Drucker](http://es.wikipedia.org/wiki/Peter_F._Drucker), la productividad del trabajador del conocimiento es el mayor de los retos del siglo XXI. 
