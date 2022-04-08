@@ -9,7 +9,6 @@ categories:
 tags:
   - Telegram
   - Qnap
-featuredImagePreview: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611418578/blog/posts/enviando-notificaciones-a-telegram-desde-tu-qnap_rdn3yv.png
 ---
 
 Conocer en tiempo real todo aquello que ocurre en nuestro [servidor NAS](https://www.masqueteclas.com/libro/) es algo que resulta de sumo interés, sobre todo si cuentas con un buen puñado de servicios desplegados, como es mi caso. Intentos de acceso fallido, actualizaciones disponibles, estado de los backups, etc, son muchas de las notificaciones que el servidor puede enviarnos de forma automática y sin apenas configuración alguna. En este post voy a contarte cómo hacer que esas notificaciones te lleguen a [Telegram](https://telegram.org/) en lugar de una cuenta de correo electrónico que es lo más habitual.

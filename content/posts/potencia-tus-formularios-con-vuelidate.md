@@ -9,7 +9,6 @@ categories:
 tags:
   - Vue
   - Formularios
-featuredImagePreview: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_30,w_800/v1602955219/blog/posts/Potencia%20tus%20formularios%20con%20Vuelidate.jpg
 ---
 
 Los formularios son uno de los principales medios de entrada de información hacia nuestras aplicaciones web desde el lado del usuario, por lo que deberemos cuidar con mucho detalle cómo funcionan, **tanto por usabilidad como por evitar errores que puedan acabar provocando agujeros de seguridad**.
