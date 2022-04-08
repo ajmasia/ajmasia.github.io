@@ -7,7 +7,7 @@ draft: false
 # Aviso legal
 
 La presente información conforma y regula las condiciones de uso, las limitaciones de responsabilidad y las obligaciones que los usuarios de las páginas web que se publican bajo el nombre de dominio https://antoniomasia.com, asumen y se comprometen a respetar.
-AAA
+
 ## Información de contacto
 Para cualquier cosa referente al cumplimiento de la RGDP, puede ponerte en contacto conmigo a través de la siguiente información:
 
