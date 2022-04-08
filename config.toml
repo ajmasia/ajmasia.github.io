@@ -17,6 +17,7 @@ staticDir = ['static']
   version = "0.2.X"
   description = "El blog de Antonio José Masiá"
   dateFormat = "02-01-2006"
+  defaultTheme = "auto"
 
   [params.header]
     # desktop header mode ("fixed", "normal", "auto")
