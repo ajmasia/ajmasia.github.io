@@ -9,7 +9,7 @@ categories:
 tags:
   - Planificación
   - GTD
-featuredImagePreview: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611132173/blog/posts/proyectos-planificacion-adaptativa.jpg
+featuredImage: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611132173/blog/posts/proyectos-planificacion-adaptativa.jpg
 hiddenFromHomePage: true
 ---
 

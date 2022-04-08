@@ -8,7 +8,7 @@ categories:
   - Efectividad
 tags:
   - Psicología
-featuredImagePreview: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611162919/blog/posts/enfria-tus-pensamientos-y-aumenta-tu-efectividad.jpg
+featuredImage: https://res.cloudinary.com/ajmasia/image/upload/c_scale,q_auto:low,w_800/v1611162919/blog/posts/enfria-tus-pensamientos-y-aumenta-tu-efectividad.jpg
 hiddenFromHomePage: true
 ---
 
